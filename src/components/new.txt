@@ -1,0 +1,51 @@
+import React, { useState } from 'react'
+import axios from 'axios'
+function Test() {
+
+    const mystyle = {
+
+        height: '100vh',
+        color: "black",
+        backgroundColor: "lightblue",
+        padding: "10px",
+        fontFamily: "Arial",
+        width: "100vw",
+
+    };
+
+
+    const[image,setImage] = useState('')
+    function handleImage(e){
+        setImage(e.target.files[0])
+    }
+
+    function handleApi(){
+        const formData  = new FormData()
+        formData.append('image',image)
+        axios.post('url',formData).then((res) => {
+            console.log(res)
+        })
+    }
+
+    return (
+        <>
+            <div style={mystyle}>
+
+                <h4 className='text-center my-2'>Enter the following details</h4>
+
+                <div className="container mx-6 px-5 my-4">
+                    <div className="row ">
+                        <div className="col ">
+                            <input type='file' name='file' onChange={handleImage}/>
+                            <button onClick={handleApi}>Submit</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            </>
+            )
+}
+
+            export default Test
